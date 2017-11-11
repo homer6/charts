@@ -45,4 +45,22 @@ data:
         Port  {{ .Values.backend.es.port }}
         Logstash_Format On
         Retry_Limit False
+{{ else if eq .Values.backend.type "kafka_rest" }}
+    [OUTPUT]
+        Name  kafka-rest
+        Match *
+        Host          {{ .Values.backend.kafka_rest.host }}
+        Port          {{ .Values.backend.kafka_rest.port }}
+        Topic         {{ .Values.backend.kafka_rest.topic }}
+        Message_Key   {{ .Values.backend.kafka_rest.message_key }}
+        Retry_Limit False
+{{ else if eq .Values.backend.type "kafka" }}
+    [OUTPUT]
+        Name  kafka
+        Match *
+        Brokers       {{ .Values.backend.kafka.brokers }}
+        Port          {{ .Values.backend.kafka.port }}
+        Topic         {{ .Values.backend.kafka.topic }}
+        Timestamp_Key  @timestamp
+        Retry_Limit False
 {{- end }}

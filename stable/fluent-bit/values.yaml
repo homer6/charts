@@ -4,8 +4,8 @@ on_minikube: false
 
 image:
   fluent_bit:
-    repository: fluent/fluent-bit
-    tag: 0.12.7
+    repository: fluent/fluent-bit-kafka-dev
+    tag: latest
   pullPolicy: Always
 
 backend:
@@ -16,6 +16,15 @@ backend:
   es:
     host: elasticsearch
     port: 9200
+  kafka_rest:
+    host: kafka-rest
+    port: 8082
+    topic: my-topic
+    message_key: my-message-key
+  kafka:
+    brokers: intentional-eel-kafka-0.intentional-eel-kafka-headless.default.svc.cluster.local
+    port: 9092
+    topic: my-topic
 
 env: []
 

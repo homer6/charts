@@ -6,4 +6,10 @@ It will forward all container logs to the svc named {{ .Values.backend.forward.h
 {{- else if eq .Values.backend.type "es" }}
 
 It will forward all container logs to the svc named {{ .Values.backend.es.host }} on port: {{ .Values.backend.es.port }}
+{{- else if eq .Values.backend.type "kafka_rest" }}
+
+It will forward all container logs to the svc named {{ .Values.backend.kafka_rest.host }} on port: {{ .Values.backend.kafka_rest.port }}
+{{- else if eq .Values.backend.type "kafka" }}
+
+It will forward all container logs to the svc named {{ .Values.backend.kafka.host }} on port: {{ .Values.backend.kafka.port }}
 {{- end }}
